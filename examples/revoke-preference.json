@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "request_id": "rev-2026-09-29-001",
+  "tenant": "acme",
+  "target_ids": ["preference-source"],
+  "preserve_ids": []
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "checkpoint-0",
+      "tenant": "acme",
+      "sequence": 1,
+      "kind": "checkpoint",
+      "parents": [],
+      "repair": "preserve"
+    },
+    {
+      "id": "preference-source",
+      "tenant": "acme",
+      "sequence": 2,
+      "kind": "source",
+      "parents": [],
+      "repair": "invalidate"
+    },
+    {
+      "id": "profile-summary",
+      "tenant": "acme",
+      "sequence": 3,
+      "kind": "summary",
+      "parents": ["preference-source"],
+      "repair": "rebuild"
+    },
+    {
+      "id": "profile-vector",
+      "tenant": "acme",
+      "sequence": 4,
+      "kind": "embedding",
+      "parents": ["profile-summary"],
+      "repair": "rebuild"
+    },
+    {
+      "id": "pending-plan",
+      "tenant": "acme",
+      "sequence": 5,
+      "kind": "plan",
+      "parents": ["profile-summary"],
+      "repair": "replay"
+    },
+    {
+      "id": "draft-response",
+      "tenant": "acme",
+      "sequence": 6,
+      "kind": "tool_observation",
+      "parents": ["pending-plan", "profile-vector"],
+      "repair": "replay"
+    },
+    {
+      "id": "unrelated-source",
+      "tenant": "acme",
+      "sequence": 7,
+      "kind": "source",
+      "parents": [],
+      "repair": "preserve"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "checkpoint-0",
+      "tenant": "acme",
+      "sequence": 1,
+      "kind": "checkpoint",
+      "parents": [],
+      "repair": "preserve"
+    },
+    {
+      "id": "preference-source",
+      "tenant": "acme",
+      "sequence": 2,
+      "kind": "source",
+      "parents": [],
+      "repair": "invalidate"
+    },
+    {
+      "id": "profile-summary",
+      "tenant": "acme",
+      "sequence": 3,
+      "kind": "summary",
+      "parents": ["preference-source"],
+      "repair": "rebuild"
+    },
+    {
+      "id": "pending-plan",
+      "tenant": "acme",
+      "sequence": 4,
+      "kind": "plan",
+      "parents": ["profile-summary"],
+      "repair": "replay"
+    },
+    {
+      "id": "email-sent",
+      "tenant": "acme",
+      "sequence": 5,
+      "kind": "tool_effect",
+      "parents": ["pending-plan"],
+      "repair": "compensate"
+    }
+  ]
+}
